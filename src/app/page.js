@@ -1,7 +1,12 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 
 // Mock Quiz Data
@@ -60,8 +65,6 @@ const quizzes = [
   },
 ];
 
-
-
 export default function OnlineQuizApp() {
   const [currentView, setCurrentView] = useState("quizSelection");
   const [selectedQuiz, setSelectedQuiz] = useState(null);
@@ -105,12 +108,11 @@ export default function OnlineQuizApp() {
     const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
     const isCorrect = selectedOption === currentQuestion.answer;
 
-    
     setUserAnswers([
-      ...userAnswers, 
+      ...userAnswers,
       { ...currentQuestion, selectedOption, isCorrect },
     ]);
-    
+
     if (isCorrect) setScore(score + 1);
 
     if (currentQuestionIndex + 1 < selectedQuiz.questions.length) {
@@ -162,7 +164,9 @@ export default function OnlineQuizApp() {
         <Card className="w-full max-w-md p-4">
           <CardHeader>
             <CardTitle>
-              {`Question ${currentQuestionIndex + 1} of ${selectedQuiz.questions.length}`}
+              {`Question ${currentQuestionIndex + 1} of ${
+                selectedQuiz.questions.length
+              }`}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -170,20 +174,24 @@ export default function OnlineQuizApp() {
               {selectedQuiz.questions[currentQuestionIndex].question}
             </p>
             <div className="space-y-2">
-              {selectedQuiz.questions[currentQuestionIndex].options.map((option) => (
-                <Button
-                  key={option}
-                  className="w-full"
-                  variant="secondary"
-                  onClick={() => handleAnswerSubmit(option)}
-                >
-                  {option}
-                </Button>
-              ))}
+              {selectedQuiz.questions[currentQuestionIndex].options.map(
+                (option) => (
+                  <Button
+                    key={option}
+                    className="w-full"
+                    variant="secondary"
+                    onClick={() => handleAnswerSubmit(option)}
+                  >
+                    {option}
+                  </Button>
+                )
+              )}
             </div>
           </CardContent>
         </Card>
       )}
+
+      {/* sdjkabdjkazbdja */}
 
       {currentView === "scoreSummary" && (
         <Card className="w-full max-w-md p-4">
@@ -215,7 +223,11 @@ export default function OnlineQuizApp() {
                 )}
               </div>
             ))}
-            <Button className="w-full mt-4" variant="primary" onClick={handleRestart}>
+            <Button
+              className="w-full mt-4"
+              variant="primary"
+              onClick={handleRestart}
+            >
               Back to Quiz Selection
             </Button>
           </CardContent>
