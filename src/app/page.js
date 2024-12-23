@@ -63,6 +63,32 @@ const quizzes = [
       },
     ],
   },
+  {
+    id: 3,
+    title: "Entertainment",
+    questions: [
+      {
+        question: "Which TV show features a character named Walter White?",
+        options: ["Breaking Bad", "Game of Thrones", "The Walking Dead", "Stranger Things"],
+        answer: "Breaking Bad",
+      },
+      {
+        question: "Which band is famous for the song 'Bohemian Rhapsody'?",
+        options: ["The Beatles", "Queen", "Led Zeppelin", "Pink Floyd"],
+        answer: "Queen",
+      },
+      {
+        question: "In Greek mythology, who is the god of the sea?",
+        options: ["Zeus", "Hades", "Poseidon", "Apollo"],
+        answer: "Poseidon",
+      },
+      {
+        question: "What is the name of the spaceship in 'Star Wars' piloted by Han Solo?",
+        options: ["Millennium Falcon", "Enterprise", "Serenity", "Galactica"],
+        answer: "Millennium Falcon",
+      },
+    ]
+  },
 ];
 
 export default function OnlineQuizApp() {
@@ -136,27 +162,29 @@ export default function OnlineQuizApp() {
       <h1 className="text-4xl font-bold mb-6 text-gray-800">Online Quiz App</h1>
 
       {currentView === "quizSelection" && (
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">Select a Quiz</h2>
-          {quizzes.map((quiz) => (
-            <Card
-              key={quiz.id}
-              className="w-full max-w-md hover:shadow-lg transition"
-            >
-              <CardHeader>
-                <CardTitle>{quiz.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button
-                  className="w-full"
-                  variant="primary"
-                  onClick={() => handleSelectQuiz(quiz)}
-                >
-                  Start Quiz
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-4 flex flex-col items-center">
+          <h2 className="text-2xl font-semibold mb-4">Select a Quiz</h2>
+          <div className="flex space-x-4 justify-center">
+            {quizzes.map((quiz) => (
+              <Card
+                key={quiz.id}
+                className="w-full max-w-xs flex-shrink-0 hover:shadow-lg transition"
+              >
+                <CardHeader>
+                  <CardTitle className="text-center">{quiz.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    className="w-full"
+                    variant="primary"
+                    onClick={() => handleSelectQuiz(quiz)}
+                  >
+                    Start Quiz
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       )}
 
@@ -187,11 +215,24 @@ export default function OnlineQuizApp() {
                 )
               )}
             </div>
+            <div className="mt-4 flex justify-center">
+            <Button
+              className="mt-4" 
+              variant="destructive"
+              onClick={() => {
+                setCurrentView("quizSelection");
+                setSelectedQuiz(null);
+                setCurrentQuestionIndex(0);
+                setScore(0);
+                setUserAnswers([]);
+              }}
+            >
+              Back to Quiz Selection
+            </Button>
+            </div>
           </CardContent>
         </Card>
       )}
-
-      {/* sdjkabdjkazbdja */}
 
       {currentView === "scoreSummary" && (
         <Card className="w-full max-w-md p-4">
@@ -224,8 +265,8 @@ export default function OnlineQuizApp() {
               </div>
             ))}
             <Button
-              className="w-full mt-4"
-              variant="primary"
+              className="w-full mt-4 border"
+              variant="default"
               onClick={handleRestart}
             >
               Back to Quiz Selection
