@@ -69,7 +69,12 @@ const quizzes = [
     questions: [
       {
         question: "Which TV show features a character named Walter White?",
-        options: ["Breaking Bad", "Game of Thrones", "The Walking Dead", "Stranger Things"],
+        options: [
+          "Breaking Bad",
+          "Game of Thrones",
+          "The Walking Dead",
+          "Stranger Things",
+        ],
         answer: "Breaking Bad",
       },
       {
@@ -83,15 +88,14 @@ const quizzes = [
         answer: "Poseidon",
       },
       {
-        question: "What is the name of the spaceship in 'Star Wars' piloted by Han Solo?",
+        question:
+          "What is the name of the spaceship in 'Star Wars' piloted by Han Solo?",
         options: ["Millennium Falcon", "Enterprise", "Serenity", "Galactica"],
         answer: "Millennium Falcon",
       },
-    ]
+    ],
   },
 ];
-
-// iojhbiuagseiasu
 
 export default function OnlineQuizApp() {
   const [currentView, setCurrentView] = useState("quizSelection");
@@ -218,19 +222,19 @@ export default function OnlineQuizApp() {
               )}
             </div>
             <div className="mt-4 flex justify-center">
-            <Button
-              className="mt-4" 
-              variant="destructive"
-              onClick={() => {
-                setCurrentView("quizSelection");
-                setSelectedQuiz(null);
-                setCurrentQuestionIndex(0);
-                setScore(0);
-                setUserAnswers([]);
-              }}
-            >
-              Back to Quiz Selection
-            </Button>
+              <Button
+                className="mt-4"
+                variant="destructive"
+                onClick={() => {
+                  setCurrentView("quizSelection");
+                  setSelectedQuiz(null);
+                  setCurrentQuestionIndex(0);
+                  setScore(0);
+                  setUserAnswers([]);
+                }}
+              >
+                Back to Quiz Selection
+              </Button>
             </div>
           </CardContent>
         </Card>
